@@ -37,4 +37,25 @@ Crear un microservicio funcional y contenerizado que permita gestionar película
 ---
 
 ## 🏗️ Arquitectura del Proyecto
+📁 src
+ ┣ 📁 main
+ ┃ ┣ 📁 java
+ ┃ ┃ ┗ 📁 com.example.peliculas
+ ┃ ┃    ┣ 📁 controller        → Maneja las peticiones HTTP (endpoints REST).
+ ┃ ┃    ┣ 📁 service           → Contiene la lógica de negocio relacionada con películas.
+ ┃ ┃    ┣ 📁 repository        → Interacción con la base de datos utilizando Spring Data JPA.
+ ┃ ┃    ┗ 📁 model             → Define la entidad `Pelicula`.
+ ┃ ┗ 📁 resources
+ ┃    ┣ application.properties → Configuración de la conexión con la base de datos MariaDB.
+ ┃    ┗ data.sql               → (Opcional) Datos de prueba para inicializar la base de datos.
+ ┣ 📁 test
+ ┃ ┗ 📁 java
+ ┃    ┗ 📁 com.example.peliculas
+ ┃       ┣ 📁 unit             → Pruebas unitarias con JUnit y Mockito.
+ ┃       ┗ 📁 integration      → Pruebas de integración para verificar el flujo completo.
+📄 Dockerfile                   → Construcción de la imagen del microservicio.
+📄 docker-compose.yml           → Orquestación del microservicio y la base de datos.
+📄 .dockerignore                → Exclusión de archivos innecesarios para la imagen.
+📄 README.md                    → Documentación del proyecto.
+
 
