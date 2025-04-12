@@ -1,0 +1,37 @@
+services:
+  database:
+    build:
+      context: ./database
+      dockerfile: Dockerfile
+    container_name: moviesdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/volumes:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: moviesdb
+      MARIADB_USER: manuela
+      MARIADB_PASSWORD: manuela1215
+    networks:
+      - movies-network
+  
+  web:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: moviesweb
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mariadb://moviesdb:3306/moviesdb
+      SPRING_DATASOURCE_USER: manuela
+      SPRING_DATASOURCE_PASSWORD: manuela1215
+    networks:
+      - movies-network
+
+networks:
+  movies-network:
+    driver: bridge
